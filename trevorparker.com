@@ -81,7 +81,7 @@ server {
         proxy_intercept_errors on;
     }
 
-    location /media/ {
+    location /assets/img/ {
         valid_referers none blocked trevorparker.com *.trevorparker.com ~\.google\. ~\.yahoo\. ~\.bing\. ~\.facebook\. ~\.fbcdn\.;
         if ($invalid_referer) {
             return 403;
