@@ -1,0 +1,26 @@
+server {
+    server_name www.gyp.se gyp.se;
+
+    listen 80;
+
+    server_tokens off;
+
+    access_log /var/log/nginx/gyp.se-access.log;
+    error_log  /var/log/nginx/gyp.se-error.log;
+
+    root /srv/www/gyp.se/public_html;
+
+    location / {
+        index index.html index.htm;
+        proxy_pass_header Server;
+        proxy_set_header  Host $http_host;
+        proxy_redirect    off;
+        proxy_set_header  X-Real-IP $remote_addr;
+        proxy_set_header  X-Scheme $scheme;
+
+        proxy_connect_timeout 10;
+        proxy_read_timeout    10;
+
+        proxy_pass http://localhost:8000/;
+    }
+}

@@ -1,0 +1,27 @@
+server {
+    server_name www.prkr.co prkr.co;
+
+    listen 80;
+    listen [2600:3c03::1d:4100]:80;
+
+    server_tokens off;
+
+    access_log /var/log/nginx/prkr.co-access.log;
+    error_log  /var/log/nginx/prkr.co-error.log;
+
+    root /srv/www/prkr.co/public_html;
+
+    location / {
+        index index.html index.htm;
+        proxy_pass_header Server;
+        proxy_set_header  Host $http_host;
+        proxy_redirect    off;
+        proxy_set_header  X-Real-IP $remote_addr;
+        proxy_set_header  X-Scheme $scheme;
+
+        proxy_connect_timeout 10;
+        proxy_read_timeout    10;
+
+        proxy_pass http://localhost:8000/;
+    }
+}
