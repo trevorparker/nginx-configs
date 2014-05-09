@@ -78,8 +78,8 @@ server {
         error_page             404 /error/404.html;
         proxy_pass             http://docker_trevorparker_com;
         proxy_set_header       X-Real-IP $remote_addr;
-        proxy_set_header       Host $http_host;
-        proxy_redirect         off;
+        proxy_set_header       Host $host;
+        proxy_redirect         http://$host/ https://$host/;
         proxy_intercept_errors on;
     }
 
@@ -87,8 +87,8 @@ server {
         error_page             404 /error/404.html;
         proxy_pass             http://docker_trevorparker_com;
         proxy_set_header       X-Real-IP $remote_addr;
-        proxy_set_header       Host $http_host;
-        proxy_redirect         off;
+        proxy_set_header       Host $host;
+        proxy_redirect         http://$host/ https://$host/;
         proxy_intercept_errors on;
 
         valid_referers none blocked trevorparker.com *.trevorparker.com ~\.google\. ~\.yahoo\. ~\.bing\. ~\.facebook\. ~\.fbcdn\.;
