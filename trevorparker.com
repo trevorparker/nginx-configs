@@ -91,7 +91,7 @@ server {
         proxy_redirect         http://$host/ https://$host/;
         proxy_intercept_errors on;
 
-        valid_referers none blocked trevorparker.com *.trevorparker.com ~\.google\. ~\.yahoo\. ~\.bing\. ~\.facebook\. ~\.fbcdn\.;
+        valid_referers none blocked trevorparker.com *.trevorparker.com ~\.google\. ~\.yahoo\. ~\.bing\. ~\.facebook\. ~\.fbcdn\. ~\.reddit\.;
         if ($invalid_referer) {
             return 403;
         }
