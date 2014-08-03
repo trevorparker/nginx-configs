@@ -1,9 +1,5 @@
 upstream docker_trevorparker_com {
-    ip_hash;
-
     server 127.0.0.1:4001;
-    server 127.0.0.1:4002;
-    server 127.0.0.1:4003;
 }
 
 server {
@@ -74,50 +70,8 @@ server {
     source_charset utf-8;
 
     location / {
-        rewrite                /\d\d\d\d/\d\d/(.*)$ https://www.trevorparker.com/$1 permanent;
-        error_page             404 /error/404.html;
         proxy_pass             http://docker_trevorparker_com;
         proxy_set_header       X-Real-IP $remote_addr;
         proxy_set_header       Host $host;
-        proxy_redirect         http://$host/ https://$host/;
-        proxy_intercept_errors on;
-    }
-
-    location /assets/css/ {
-        error_page             404 /error/404.html;
-        proxy_pass             http://docker_trevorparker_com;
-        proxy_set_header       X-Real-IP $remote_addr;
-        proxy_set_header       Host $host;
-        proxy_redirect         http://$host/ https://$host/;
-        proxy_intercept_errors on;
-
-        expires                1w;
-    }
-
-    location /assets/img/ {
-        error_page             404 /error/404.html;
-        proxy_pass             http://docker_trevorparker_com;
-        proxy_set_header       X-Real-IP $remote_addr;
-        proxy_set_header       Host $host;
-        proxy_redirect         http://$host/ https://$host/;
-        proxy_intercept_errors on;
-
-        expires                1w;
-
-        valid_referers none blocked trevorparker.com *.trevorparker.com ~\.google\. ~\.yahoo\. ~\.bing\. ~\.facebook\. ~\.fbcdn\. ~\.reddit\.;
-        if ($invalid_referer) {
-            return 403;
-        }
-    }
-
-    location /assets/js/ {
-        error_page             404 /error/404.html;
-        proxy_pass             http://docker_trevorparker_com;
-        proxy_set_header       X-Real-IP $remote_addr;
-        proxy_set_header       Host $host;
-        proxy_redirect         http://$host/ https://$host/;
-        proxy_intercept_errors on;
-
-        expires                1w;
     }
 }
