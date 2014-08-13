@@ -1,5 +1,5 @@
 upstream docker_trevorparker_com {
-    server 127.0.0.1:4001;
+    server 127.0.0.1:8080;
 }
 
 server {
@@ -73,5 +73,6 @@ server {
         proxy_pass             http://docker_trevorparker_com;
         proxy_set_header       X-Real-IP $remote_addr;
         proxy_set_header       Host $host;
+        proxy_set_header       X-Forwarded-Proto $scheme;
     }
 }
