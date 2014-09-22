@@ -1,5 +1,8 @@
 upstream docker_trevorparker_com {
+    ip_hash;
     server 127.0.0.1:8080;
+    server 127.0.0.1:8081;
+    server 127.0.0.1:8082;
 }
 
 server {
