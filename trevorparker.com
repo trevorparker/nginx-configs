@@ -6,14 +6,30 @@ upstream docker_trevorparker_com {
 }
 
 server {
-    server_name trevorparker.com;
-
+    server_name trevorparker.com www.trevorparker.com;
     listen *:80;
-    listen *:443 ssl;
-    listen [::]:80 ipv6only=on;
-    listen [::]:443 ssl ipv6only=on;
+    listen [::]:80 ipv6only=off;
 
     server_tokens off;
+
+    charset        utf-8;
+    source_charset utf-8;
+
+    access_log /var/log/nginx/trevorparker.com-access.log;
+    error_log  /var/log/nginx/trevorparker.com-error.log;
+
+    return 301 https://www.trevorparker.com$request_uri;
+}
+
+server {
+    server_name trevorparker.com;
+    listen *:443 ssl;
+    listen [::]:443 ssl ipv6only=off;
+
+    server_tokens off;
+
+    charset        utf-8;
+    source_charset utf-8;
 
     access_log /var/log/nginx/trevorparker.com-access.log;
     error_log  /var/log/nginx/trevorparker.com-error.log;
@@ -28,22 +44,6 @@ server {
     ssl_session_cache         builtin:1000 shared:SSL:10m;
 
     add_header Strict-Transport-Security max-age=31536000;
-
-    charset        utf-8;
-    source_charset utf-8;
-
-    return 301 https://www.trevorparker.com$request_uri;
-}
-
-server {
-    server_name www.trevorparker.com;
-    listen *:80;
-    listen [::]:80;
-
-    server_tokens off;
-
-    access_log /var/log/nginx/trevorparker.com-access.log;
-    error_log  /var/log/nginx/trevorparker.com-error.log;
 
     return 301 https://www.trevorparker.com$request_uri;
 }
@@ -55,6 +55,9 @@ server {
 
     server_tokens off;
 
+    charset        utf-8;
+    source_charset utf-8;
+
     access_log /var/log/nginx/trevorparker.com-access.log;
     error_log  /var/log/nginx/trevorparker.com-error.log;
 
@@ -69,9 +72,6 @@ server {
 
     add_header Strict-Transport-Security max-age=31536000;
 
-    charset        utf-8;
-    source_charset utf-8;
-
     location / {
         proxy_pass             http://docker_trevorparker_com;
         proxy_set_header       X-Real-IP $remote_addr;
@@ -79,3 +79,4 @@ server {
         proxy_set_header       X-Forwarded-Proto $scheme;
     }
 }
+
