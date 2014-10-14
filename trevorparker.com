@@ -37,7 +37,7 @@ server {
     ssl_certificate     /etc/ssl/localcerts/trevorparker.com.chained.pem;
     ssl_certificate_key /etc/ssl/localcerts/trevorparker.com.key;
 
-    ssl_protocols             SSLv3 TLSv1 TLSv1.1 TLSv1.2;
+    ssl_protocols             TLSv1 TLSv1.1 TLSv1.2;
     ssl_prefer_server_ciphers on;
     ssl_ciphers               ECDHE-RSA-AES256-GCM-SHA384:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-RSA-AES256-SHA384:ECDHE-RSA-AES128-SHA256:ECDHE-RSA-RC4-SHA:ECDHE-RSA-AES256-SHA:DHE-RSA-AES256-SHA:DHE-RSA-AES128-SHA:RC4-SHA:!aNULL:!eNULL:!EXPORT:!DES:!3DES:!MD5:!DSS:!PKS;
     ssl_session_timeout       5m;
@@ -64,7 +64,7 @@ server {
     ssl_certificate     /etc/ssl/localcerts/trevorparker.com.chained.pem;
     ssl_certificate_key /etc/ssl/localcerts/trevorparker.com.key;
 
-    ssl_protocols             SSLv3 TLSv1 TLSv1.1 TLSv1.2;
+    ssl_protocols             TLSv1 TLSv1.1 TLSv1.2;
     ssl_prefer_server_ciphers on;
     ssl_ciphers               ECDHE-RSA-AES256-GCM-SHA384:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-RSA-AES256-SHA384:ECDHE-RSA-AES128-SHA256:ECDHE-RSA-RC4-SHA:ECDHE-RSA-AES256-SHA:DHE-RSA-AES256-SHA:DHE-RSA-AES128-SHA:RC4-SHA:!aNULL:!eNULL:!EXPORT:!DES:!3DES:!MD5:!DSS:!PKS;
     ssl_session_timeout       5m;
