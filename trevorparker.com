@@ -8,7 +8,7 @@ upstream docker_trevorparker_com {
 server {
     server_name trevorparker.com www.trevorparker.com;
     listen *:80;
-    listen [::]:80 ipv6only=off;
+    listen [::]:80;
 
     server_tokens off;
 
@@ -24,7 +24,7 @@ server {
 server {
     server_name trevorparker.com;
     listen *:443 ssl;
-    listen [::]:443 ssl ipv6only=off;
+    listen [::]:443 ssl;
 
     server_tokens off;
 
